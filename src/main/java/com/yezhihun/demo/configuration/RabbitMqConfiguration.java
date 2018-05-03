@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfiguration {
 
+
     @Bean
     TopicExchange ruleExchange(){
         return new TopicExchange("rule.exchange");
