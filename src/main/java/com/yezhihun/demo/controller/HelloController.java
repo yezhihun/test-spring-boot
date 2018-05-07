@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yezhihun.demo.entity.User;
 import com.yezhihun.demo.mq.RuleProducter;
 import com.yezhihun.demo.service.UserService;
-import com.yezhihun.demo.util.ReadOnlyDataSource;
+import com.yezhihun.demo.util.TargetDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +40,7 @@ public class HelloController {
 
     @RequestMapping("/getUserById2")
     @ResponseBody
-    @ReadOnlyDataSource
+    @TargetDataSource("read")
     public JSONObject getByUserId2(Integer userId){
         User user = userService.selectByPrimaryKey(1);
 
