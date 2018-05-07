@@ -2,13 +2,14 @@ package com.yezhihun.demo.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by tianye on 2018/5/3.
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends BaseTable implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

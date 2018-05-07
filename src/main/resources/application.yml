@@ -1,21 +1,41 @@
 spring:
   datasource:
-    username: poem
-    password: poem
-    #本地数据库配置
-    url: jdbc:mysql://localhost:3306/poem?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
-    driver-class-name: com.mysql.jdbc.Driver
-    #sql-script-encoding: utf-8
-    maximum-pool-size: 100
-    max-idle: 10
-    max-wait: 10000
-    min-idle: 5
-    initial-size: 5
-    validation-query: SELECT 1
-    test-on-borrow: false
-    test-while-idle: true
-    time-between-eviction-runs-millis: 18800
-    type: com.alibaba.druid.pool.DruidDataSource
+    write:
+      username: poem
+      password: poem
+      #本地数据库配置
+      url: jdbc:mysql://localhost:3306/poem?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
+      driver-class-name: com.mysql.jdbc.Driver
+      #sql-script-encoding: utf-8
+      maximum-pool-size: 100
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
+      type: com.alibaba.druid.pool.DruidDataSource
+      name: db1
+    read:
+      username: yezhihun
+      password: yezhihun
+      #本地数据库配置
+      url: jdbc:mysql://localhost:3306/test?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
+      driver-class-name: com.mysql.jdbc.Driver
+      #sql-script-encoding: utf-8
+      maximum-pool-size: 100
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
+      type: com.alibaba.druid.pool.DruidDataSource
+      name: db1
   jpa:
     show-sql: true
     database: mysql
@@ -31,12 +51,14 @@ spring:
       force: true
 
   rabbitmq:
-    host: rabbitmq.hoomxb.com
+    host: localhost
     port: 5672
     username: test
     password: test
     virtual-host: test
-
+    listener:
+      simple:
+        acknowledge-mode: manual
 server:
   port: 8020
   tomcat:
