@@ -39,7 +39,7 @@ spring:
     show-sql: true
     database: mysql
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
@@ -49,15 +49,15 @@ spring:
       enabled: true
       force: true
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: test
-    password: test
-    virtual-host: test
-    listener:
-      simple:
-        acknowledge-mode: manual
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: test
+#    password: test
+#    virtual-host: test
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
 server:
   port: 8020
   tomcat:
