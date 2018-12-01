@@ -59,6 +59,6 @@ spring:
 #      simple:
 #        acknowledge-mode: manual
 server:
-  port: 8020
+  port: 8070
   tomcat:
     uri-encoding: UTF-8

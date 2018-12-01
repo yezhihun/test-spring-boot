@@ -18,6 +18,9 @@ import java.util.List;
  * 1,队伍比赛记录查询，条件主队、客队、半场平、加时、胜率
  * 2,队伍概况查询，场均得分、场均失分、主场场均得分、主场场均失分、客场场均得分、客场场均失分、主场胜率、客场胜率
  * 3,个人数据统计（根据主客场，对战双方）
+ * 4,比赛胜负、大小分预测，出战主力、主客场、连胜、背靠背、历史记录，
+ *
+ * 根据对阵双方，选择伤病名单，
  */
 @Controller
 public class GameController {
@@ -27,10 +30,10 @@ public class GameController {
     private SwoopDataJob swoopDataJob;
 
     @RequestMapping("/index")
-    public ModelAndView index() {
-        ModelAndView md = new ModelAndView("/index");
+    public String index() {
+        ModelAndView md = new ModelAndView("index");
         md.addObject("key", 123);
-        return md;
+        return "index";
     }
 
     /**
