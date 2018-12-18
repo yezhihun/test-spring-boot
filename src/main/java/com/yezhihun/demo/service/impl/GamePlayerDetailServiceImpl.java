@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 /**
  * Created by tianye on 2018/11/16.
@@ -21,5 +22,10 @@ public class GamePlayerDetailServiceImpl extends AbstractBaseServiceImpl<GamePla
     @Override
     public void init() {
         this.baseDao = gamePlayerDetailDao;
+    }
+
+    @Override
+    public List<GamePlayerDetail> selectDetailByMidAndTeamId(String gameNo, String teamId) {
+        return gamePlayerDetailDao.findByGameNoAndTeamIdOrderByScoreDesc(gameNo, teamId);
     }
 }

@@ -34,6 +34,133 @@
     <script type="text/javascript">
         var datagrid;
         $(function () {
+
+            datagrid = $('#datagrid')
+                .datagrid(
+                    {
+                        url : "${app}/queryGameList",
+                        title : '',
+                        pagination : true,
+                        toolbar : "#toolbar",
+                        pageSize : 10,
+                        pageList : [ 10, 20, 30, 40, 50 ],
+                        border : true,
+                        idField : 'id',
+                        singleSelect : true,
+                        fit : false,
+                        queryParams : {
+                            "name": $("#name").val(),
+                            "idCode":$("#idCode").val(),
+                            "preMobile":$("#preMobile").val(),
+                            "bankNum":$("#bankNum").val()
+                        },
+                        columns : [ [
+                            {
+                                field : 'homeTeamName',
+                                title : '主队',
+                                width : 180,
+                                align : 'center'
+                            },
+                            {
+                                field : 'homeTeamName',
+                                title : '主队得分',
+                                width : 180,
+                                align : 'center'
+                            },
+                            {
+                                field : 'guestTeamName',
+                                title : '客队',
+                                width : 180,
+                                align : 'center'
+                            },
+                            {
+                                field : 'gameDate',
+                                title : '比赛时间',
+                                width : 180,
+                                align : 'center',
+                                formatter : function(value) {
+                                    if (value == -1) {
+                                        return "";
+                                    } else {
+                                        return dateFormat(new Date(
+                                            value),
+                                            "yyyy-MM-dd hh:mm:ss");
+                                    }
+                                }
+                            },
+                            {
+                                field : 'TRIGGER_STATE',
+                                title : '状态',
+                                width : 100,
+                                align : 'center',
+                                formatter : function(value, rowData,
+                                                     rowIndex) {
+                                    if (value == "WAITING") {
+                                        return "等待";
+                                    } else if (value == "PAUSED") {
+                                        return "暂停";
+                                    } else if (value == "ACQUIRED") {
+                                        return "正常执行";
+                                    } else if (value == "BLOCKED") {
+                                        return "阻塞";
+                                    } else if (value == "ERROR") {
+                                        return "错误";
+                                    } else if (value == "DONE") {
+                                        return "完成";
+                                    } else {
+                                        return value;
+                                    }
+
+                                }
+                            },
+                            {
+                                field : 'TRIGGER_NAME',
+                                title : '操作',
+                                width : 180,
+                                align : 'center',
+                                formatter : function(value, rowData,
+                                                     rowIndex) {
+                                    var e = "<a href='#' onclick=editRow('"
+                                        + rowIndex
+                                        + "\',\'"
+                                        + value
+                                        + "')>修改</a>";
+                                    var s = "<a href='#' onclick=saveRow('"
+                                        + rowIndex + "')>保存</a>";
+                                    var c = "<a href='#' onclick=cancelRow('"
+                                        + rowIndex + "')>取消</a>";
+
+                                    var d = "<a href='#' onclick=deleteJob('"
+                                        + rowData.JOB_NAME
+                                        + "')>删除</a>";
+                                    var start = '<a href="#" onclick="startJob(\''
+                                        + value
+                                        + '\',\''
+                                        + rowData.JOB_NAME
+                                        + '\')">开始</a>';
+                                    var pause = '<a href="#" onclick="pauseJob(\''
+                                        + value
+                                        + '\',\''
+                                        + rowData.JOB_NAME
+                                        + '\')">暂停</a>';
+                                    if (rowData.editing){
+                                        return s + " | " + c;
+                                    }else{
+                                        if(rowData.TRIGGER_STATE=="PAUSED"){
+                                            return start +" | " + e + " | " + d;
+                                        }else if(rowData.TRIGGER_STATE=="DONE"){
+                                            d = '<a href="#" class="a_dis">删除</a>';
+                                            return d;
+                                        }
+                                        else {
+                                            return pause +" | " + e + " | " + d;
+                                        }
+                                    }
+                                }
+                            } ] ]
+                    });
+
+
             /*展开代码*/
             var ul_show = 1;
             $("#show_all").click(function (e) {
@@ -56,12 +183,13 @@
                 var bankNum = $("#bankNum").val();
 
                 var data = {
-                    "name": name,
-                    "idCode":idCode,
-                    "preMobile":preMobile,
-                    "bankNum":bankNum
+                    "name": $("#name").val(),
+                    "idCode":$("#idCode").val(),
+                    "preMobile":$("#preMobile").val(),
+                    "bankNum":$("#bankNum").val()
                 };
-                queryResult(data);
+//                queryResult(data);
+                datagrid.datagrid('load', data);
             });
         });
 
@@ -123,9 +251,8 @@
             <hr>
         </div>
     </div>
-    <div>
-        <textarea style="width: 100%;height: 500px;" id="result"></textarea>
-
+    <div class="row">
+        <div id="datagrid"></div>
     </div>
 </div>
 

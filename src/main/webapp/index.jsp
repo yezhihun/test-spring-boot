@@ -1,10 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    request.setAttribute("app", request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/");
 %>
-<c:set var="app" value="<%=basePath%>" />
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 、Transitional//EN">
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,7 +83,7 @@
     <script type="text/javascript">
         $(function() {
 
-            $.get("${app}/queryController/showCapitalUpdateDetail",function(data){
+            $.get("${app}/showGameList",function(data){
                 $("#main").html(data);
             });
             $(".yg-menu").bind("click",function(){
@@ -116,13 +114,13 @@
 							</span>
                         </div> <!-- /input-group -->
                     </li>
-                    <li><a href="#"><i class="fa fa-list-alt fa-fw"></i>  信息查询<span
+                    <li><a href="#"><i class="fa fa-list-alt fa-fw"></i>  NBA<span
                             class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse in">
-                            <li><a id="${app}/queryController/showCapitalUpdateDetail" class="yg-menu active">资金变动明细查询</a></li>
+                            <li><a id="${app}/showGameList" class="yg-menu active">比赛信息</a></li>
                         </ul>
                         <ul class="nav nav-second-level collapse in">
-                            <li><a id="${app}/queryController/showCapitalBalance" class="yg-menu active">资金余额查询(废弃)</a></li>
+                            <li><a id="${app}/queryController/showCapitalBalance" class="yg-menu active">比赛预测</a></li>
                         </ul>
                         <ul class="nav nav-second-level collapse in">
                             <li><a id="${app}/queryController/showRepayDetail" class="yg-menu active">还款明细查询</a></li>
