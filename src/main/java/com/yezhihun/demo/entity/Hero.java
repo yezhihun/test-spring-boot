@@ -48,10 +48,26 @@ public class Hero  extends BaseTable implements Serializable {
      */
     private Integer exp;
     /**
-     *
+     * 潜力值
      */
     private Potential potential;
 
+    public Hero(Occupation occupation){
+        this.occupation = occupation;
+        switch (occupation){
+            case MASTER:
+                this.power = 80;
+                this.armor = 80;
+                this.speed = 120;
+                this.mentality = 120;
+                break;
+            case SOLDIER:
+                this.power = 120;
+                this.armor = 120;
+                this.speed = 80;
+                this.mentality = 80;
+        }
+    }
 
     public Integer getId() {
         return id;
@@ -131,5 +147,10 @@ public class Hero  extends BaseTable implements Serializable {
 
     public void setPotential(Potential potential) {
         this.potential = potential;
+    }
+
+    public String toString(){
+        String desc = String.format("occupation[%s],potential[%s],power[%s],mentality[%s],speed[%s],armor[%s],total[%d]",occupation.getDesc(), potential.getDesc(), this.getPower(), this.getMentality(), this.getSpeed(), this.getArmor(), power+armor+speed+mentality);
+        return desc;
     }
 }
