@@ -7,7 +7,6 @@ public enum AvailableDataSources {
             return "READ";
         }
     },
-
     WRITE() {
         @Override
         public String toString() {
