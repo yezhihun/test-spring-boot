@@ -21,7 +21,6 @@ public enum  Potential {
         this.max = max;
         this.min = min;
     }
-
     public int getValue() {
         return value;
     }
