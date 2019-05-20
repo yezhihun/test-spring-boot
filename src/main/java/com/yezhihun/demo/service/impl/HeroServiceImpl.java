@@ -52,9 +52,4 @@ public class HeroServiceImpl extends AbstractBaseServiceImpl<Hero> implements He
         return RandomUtil.getRandomHero(new Hero(occupation), potential);
     }
 
-    private Hero createHeroDetail(){
-
-        return null;
-    }
-
 }
