@@ -2,6 +2,7 @@ package com.yezhihun.demo.util;
 
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
+import com.yezhihun.demo.enums.Occupation;
 
 /**
  * 属性计算
@@ -94,15 +95,30 @@ public class CalculatAttribute {
 
     private static void attack(Hero attacker, Hero attacked){
         /**
-         * TODO 增加伤害上下限，增加护甲魔抗伤害减免
+         * TODO 增加伤害上下限，
+         * 增加护甲魔抗伤害减免
+         * 增加暴击伤害
          */
         if (attacker.getBlood()<=0 || attacked.getBlood()<=0){
             return;
         }
         int agg = attacker.getAggressivity();
+        int hurt = agg;
+        switch (attacker.getOccupation()){
+            case MASTER:
+                double magicResist = attacked.getMagicResist();
+                hurt = (int)(agg * (1 - magicResist/100));
+                break;
+            case SOLDIER:
+            case AGILE:
+                double armor = attacked.getArmor();
+                hurt = (int)(agg * (1 - armor/100));
+                break;
+        }
         int blood = attacked.getBlood();
-        blood = (blood - agg)>=0 ? blood - agg : 0;
-        System.out.println(attacker.getName() + " 对 " + attacked.getName() + " 造成 " + agg + " 点伤害！剩余血量：" + blood);
+        blood = (blood - hurt)>=0 ? blood - hurt : 0;
+        System.out.println(attacker.getName() + " 对 " + attacked.getName() + " 造成 " + hurt + " 点"+
+                (attacker.getOccupation().equals(Occupation.MASTER)?"魔法":"物理")+"伤害！剩余血量：" + blood);
         if (blood == 0){
             System.out.println(attacked.getName() + " 死亡！");
         }
