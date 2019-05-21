@@ -2,6 +2,7 @@ package com.yezhihun.demo.entity;
 
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
+import com.yezhihun.demo.util.CalculatAttribute;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "hero")
-public class Hero  extends BaseTable implements Serializable {
+public class Hero extends BaseTable implements Serializable, Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -32,13 +33,38 @@ public class Hero  extends BaseTable implements Serializable {
      */
     private Integer power;
     /**
-     * 速度
+     * 敏捷值
      */
-    private Integer speed;
+    private Integer agile;
     /**
      * 护甲
      */
     private Integer armor;
+    /**
+     * 魔抗
+     */
+    private Integer magicResist;
+    /**
+     * 血量
+     */
+    private Integer blood;
+    /**
+     * 魔法值
+     */
+    private Integer magic;
+    /**
+     * 攻击力
+     */
+    private Integer aggressivity;
+    /**
+     * 装备
+     */
+    private Equip e1;
+    private Equip e2;
+    private Equip e3;
+    private Equip e4;
+    private Equip e5;
+    private Equip e6;
     /**
      * 等级
      */
@@ -52,20 +78,28 @@ public class Hero  extends BaseTable implements Serializable {
      */
     private Potential potential;
 
-    public Hero(Occupation occupation){
+    public Hero clone() throws CloneNotSupportedException {
+        return (Hero) super.clone();
+    }
+
+    public Hero(Occupation occupation) {
         this.occupation = occupation;
-        switch (occupation){
+        this.power = 80;
+        this.mentality = 80;
+        this.agile = 80;
+        this.aggressivity = 10;
+        this.magicResist = 5;
+        this.armor = 5;
+        this.blood = 100;
+        this.magic = 100;
+        switch (occupation) {
             case MASTER:
-                this.power = 80;
-                this.armor = 80;
-                this.speed = 120;
                 this.mentality = 120;
                 break;
             case SOLDIER:
                 this.power = 120;
-                this.armor = 120;
-                this.speed = 80;
-                this.mentality = 80;
+            case AGILE:
+                this.agile = 120;
         }
     }
 
@@ -109,14 +143,6 @@ public class Hero  extends BaseTable implements Serializable {
         this.power = power;
     }
 
-    public Integer getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
-    }
-
     public Integer getArmor() {
         return armor;
     }
@@ -149,8 +175,98 @@ public class Hero  extends BaseTable implements Serializable {
         this.potential = potential;
     }
 
-    public String toString(){
-        String desc = String.format("occupation[%s],potential[%s],power[%s],mentality[%s],speed[%s],armor[%s],total[%d]",occupation.getDesc(), potential.getDesc(), this.getPower(), this.getMentality(), this.getSpeed(), this.getArmor(), power+armor+speed+mentality);
+    public String toString() {
+        String desc = String.format("occupation[%s],potential[%s],power[%s],mentality[%s],armor[%s],agile[%s],aggressivity[%s],total[%d]",
+                occupation.getDesc(), potential.getDesc(), this.getPower(),
+                this.getMentality(), this.getArmor(), this.getAgile(), this.getAggressivity(), power + mentality + agile);
         return desc;
+    }
+
+    public Integer getAgile() {
+        return agile;
+    }
+
+    public void setAgile(Integer agile) {
+        this.agile = agile;
+    }
+
+    public Integer getMagicResist() {
+        return magicResist;
+    }
+
+    public void setMagicResist(Integer magicResist) {
+        this.magicResist = magicResist;
+    }
+
+    public Integer getBlood() {
+        return this.blood;
+    }
+
+    public void setBlood(Integer blood) {
+        this.blood = blood;
+    }
+
+    public Integer getMagic() {
+        return magic;
+    }
+
+    public void setMagic(Integer magic) {
+        this.magic = magic;
+    }
+
+    public Integer getAggressivity() {
+        return aggressivity;
+    }
+
+    public void setAggressivity(Integer aggressivity) {
+        this.aggressivity = aggressivity;
+    }
+
+    public Equip getE1() {
+        return e1;
+    }
+
+    public void setE1(Equip e1) {
+        this.e1 = e1;
+    }
+
+    public Equip getE2() {
+        return e2;
+    }
+
+    public void setE2(Equip e2) {
+        this.e2 = e2;
+    }
+
+    public Equip getE3() {
+        return e3;
+    }
+
+    public void setE3(Equip e3) {
+        this.e3 = e3;
+    }
+
+    public Equip getE4() {
+        return e4;
+    }
+
+    public void setE4(Equip e4) {
+        this.e4 = e4;
+    }
+
+    public Equip getE5() {
+        return e5;
+    }
+
+    public void setE5(Equip e5) {
+        this.e5 = e5;
+    }
+
+    public Equip getE6() {
+        return e6;
+    }
+
+    public void setE6(Equip e6) {
+        this.e6 = e6;
     }
 }

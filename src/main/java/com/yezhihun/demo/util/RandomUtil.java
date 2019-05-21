@@ -58,10 +58,10 @@ public class RandomUtil {
         double max = potential.getMax();
         double min = potential.getMin();
         hero.setPotential(potential);
-        hero.setArmor(getRealValueBetween(min, max, hero.getArmor()));
         hero.setMentality(getRealValueBetween(min, max, hero.getMentality()));
         hero.setPower(getRealValueBetween(min, max, hero.getPower()));
-        hero.setSpeed(getRealValueBetween(min, max, hero.getSpeed()));
+        hero.setAgile(getRealValueBetween(min, max, hero.getAgile()));
+        hero.setAggressivity(getRealValueBetween(min, max, hero.getAggressivity()));
         return hero;
     }
 
@@ -74,7 +74,7 @@ public class RandomUtil {
      */
     private static int getRealValueBetween(double min, double max, int base){
 
-        return (int)((Math.random()*100 * (max - min)) + (base * min));
+        return (int)(((Math.random()*100 * (max - min))/100 + min) * base);
     }
 
     public static void main(String[] args){
@@ -103,9 +103,21 @@ public class RandomUtil {
 //        System.out.println("B:"+countB);
 //        System.out.println("S:"+countS);
 
-        for (int i = 0; i< 100; i++) {
-            Hero hero = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
-            System.out.println(hero);
+//        for (int i = 0; i< 100; i++) {
+////            Hero hero = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
+////            System.out.println(hero);
+////        }
+
+        Hero zhangfei = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
+        zhangfei.setName("张飞");
+
+        Hero lvbu = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
+        lvbu.setName("吕布");
+
+        try {
+            CalculatAttribute.battle(CalculatAttribute.calculatHeroAttr(zhangfei), CalculatAttribute.calculatHeroAttr(lvbu));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
         }
 
     }

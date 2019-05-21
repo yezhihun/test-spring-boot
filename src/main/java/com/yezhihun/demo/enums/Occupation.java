@@ -5,8 +5,9 @@ package com.yezhihun.demo.enums;
  * 职业
  */
 public enum Occupation {
-    SOLDIER(50, "战士"),
-    MASTER(50, "法师");
+    SOLDIER(33, "战士"),
+    MASTER(33, "法师"),
+    AGILE(33, "风行者");
 
     private int value;
     private String desc;
