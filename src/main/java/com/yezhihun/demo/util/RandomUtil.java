@@ -2,6 +2,8 @@ package com.yezhihun.demo.util;
 
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
+import com.yezhihun.demo.entity.monster.Monster;
+import com.yezhihun.demo.enums.MonsterPotential;
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
 
@@ -55,6 +57,12 @@ public class RandomUtil {
         return pp;
     }
 
+    /**
+     * 随机生成英雄
+     * @param hero
+     * @param potential
+     * @return
+     */
     public static Hero getRandomHero(Hero hero, Potential potential){
         double max = potential.getMax();
         double min = potential.getMin();
@@ -64,6 +72,23 @@ public class RandomUtil {
         hero.setAgile(getRealValueBetween(min, max, hero.getAgile()));
         hero.setAggressivity(getRealValueBetween(min, max, hero.getAggressivity()));
         return hero;
+    }
+
+    /**
+     * 随机生成怪物
+     * @param monster
+     * @return
+     */
+    public static Monster getRandomMonster(Monster monster, MonsterPotential potential){
+        double max = potential.getMax();
+        double min = potential.getMin();
+        monster.setMonsterPotential(potential);
+        monster.setMentality(getRealValueBetween(min, max, monster.getMentality()));
+        monster.setPower(getRealValueBetween(min, max, monster.getPower()));
+        monster.setAgile(getRealValueBetween(min, max, monster.getAgile()));
+        monster.setAggressivity(getRealValueBetween(min, max, monster.getAggressivity()));
+
+        return monster;
     }
 
     /**
