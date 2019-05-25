@@ -3,6 +3,7 @@ package com.yezhihun.demo.util;
 import com.yezhihun.demo.entity.Biology;
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
+import com.yezhihun.demo.entity.monster.Monster;
 import com.yezhihun.demo.enums.Occupation;
 
 /**
@@ -80,8 +81,8 @@ public class CalculatAttribute {
      * @param right
      * @return
      */
-    public static Biology battle(Biology left, Biology right){
-        System.out.println(left.getName() +"[攻击力:"+left.getAggressivity()+",血量:"+left.getBlood()+"]");
+    public static Biology battle(Biology trueLeft, Biology left, Biology right){
+        System.out.println(left.getName() +"[等级"+trueLeft.getLevel()+",攻击力:"+left.getAggressivity()+",血量:"+left.getBlood()+"]");
         System.out.println("---------VS----------");
         System.out.println(right.getName() +"[攻击力:"+right.getAggressivity()+",血量:"+right.getBlood()+"]");
         int i = 0;
@@ -91,7 +92,10 @@ public class CalculatAttribute {
             attack(left, right);
             attack(right, left);
         }
-        return left.getBlood()>=0?left:right;
+        if (left.getBlood() > 0 && left instanceof Hero && right instanceof Monster){
+            EmpiricalUtil.getEmpByHeroAndMonster((Hero) trueLeft, (Monster) right);
+        }
+        return left.getBlood()>=0?trueLeft:right;
     }
 
     private static void attack(Biology attacker, Biology attacked){

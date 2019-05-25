@@ -28,10 +28,6 @@ public class Hero extends Biology {
     private Equip e5;
     private Equip e6;
     /**
-     * 等级
-     */
-    private Integer level;
-    /**
      * 经验值
      */
     private long exp;
@@ -54,6 +50,7 @@ public class Hero extends Biology {
         this.armor = 5;
         this.blood = 100;
         this.magic = 100;
+        this.level = 1;
         switch (occupation) {
             case MASTER:
                 this.mentality = 120;
@@ -79,14 +76,6 @@ public class Hero extends Biology {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
     }
 
     public long getExp() {

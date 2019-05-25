@@ -16,39 +16,39 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
     /**
      * 智力值
      */
-    protected Integer mentality;
+    protected int mentality;
     /**
      * 力量值
      */
-    protected Integer power;
+    protected int power;
     /**
      * 敏捷值
      */
-    protected Integer agile;
+    protected int agile;
     /**
      * 护甲
      */
-    protected Integer armor;
+    protected int armor;
     /**
      * 魔抗
      */
-    protected Integer magicResist;
+    protected int magicResist;
     /**
      * 血量
      */
-    protected Integer blood;
+    protected int blood;
     /**
      * 魔法值
      */
-    protected Integer magic;
+    protected int magic;
     /**
      * 攻击力
      */
-    protected Integer aggressivity;
+    protected int aggressivity;
     /**
      * 等级
      */
-    protected Integer level;
+    protected int level = 1;
     /**
      * 职业
      */
@@ -62,75 +62,75 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
         this.name = name;
     }
 
-    public Integer getMentality() {
+    public int  getMentality() {
         return mentality;
     }
 
-    public void setMentality(Integer mentality) {
+    public void setMentality(int  mentality) {
         this.mentality = mentality;
     }
 
-    public Integer getPower() {
+    public int  getPower() {
         return power;
     }
 
-    public void setPower(Integer power) {
+    public void setPower(int  power) {
         this.power = power;
     }
 
-    public Integer getAgile() {
+    public int  getAgile() {
         return agile;
     }
 
-    public void setAgile(Integer agile) {
+    public void setAgile(int  agile) {
         this.agile = agile;
     }
 
-    public Integer getArmor() {
+    public int  getArmor() {
         return armor;
     }
 
-    public void setArmor(Integer armor) {
+    public void setArmor(int  armor) {
         this.armor = armor;
     }
 
-    public Integer getMagicResist() {
+    public int  getMagicResist() {
         return magicResist;
     }
 
-    public void setMagicResist(Integer magicResist) {
+    public void setMagicResist(int  magicResist) {
         this.magicResist = magicResist;
     }
 
-    public Integer getBlood() {
+    public int  getBlood() {
         return blood;
     }
 
-    public void setBlood(Integer blood) {
+    public void setBlood(int  blood) {
         this.blood = blood;
     }
 
-    public Integer getMagic() {
+    public int  getMagic() {
         return magic;
     }
 
-    public void setMagic(Integer magic) {
+    public void setMagic(int  magic) {
         this.magic = magic;
     }
 
-    public Integer getAggressivity() {
+    public int  getAggressivity() {
         return aggressivity;
     }
 
-    public void setAggressivity(Integer aggressivity) {
+    public void setAggressivity(int  aggressivity) {
         this.aggressivity = aggressivity;
     }
 
-    public Integer getLevel() {
+    public int  getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(int  level) {
         this.level = level;
     }
 

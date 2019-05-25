@@ -29,6 +29,8 @@ public class EmpiricalUtil {
         long currentLevelExp = getLevelUpEmp(level);
 
         int upExp = getEmp(level, monster.getLevel(), monster.getMonsterPotential());
+        System.out.println(hero.getName() + "击败" + monster.getName() +
+                "["+monster.getMonsterPotential().getValue()+","+monster.getLevel()+"]"+"获得经验:"+upExp);
 
         exp += upExp;
         if (exp >= currentLevelExp){
@@ -47,7 +49,7 @@ public class EmpiricalUtil {
      * @return
      */
     public static Hero heroLevelUp(Hero hero, long exp, long currentLevelExp){
-        if (exp <= currentLevelExp){
+        if (exp < currentLevelExp){
             return hero;
         }
         Integer level = hero.getLevel();
@@ -56,7 +58,7 @@ public class EmpiricalUtil {
         }
         hero.setLevel(level+1);
         hero.setExp(level+1 == MAX_LEVEL?0:exp-currentLevelExp);
-        
+        System.out.println(String.format("%s升到%s级", hero.getName(), level+1));
         return attributeLeveUp(hero);
     }
 
@@ -85,14 +87,14 @@ public class EmpiricalUtil {
                 agile = 12;
         }
 
-        hero.setPower(power);
-        hero.setMentality(mentality);
-        hero.setAgile(agile);
-        hero.setAggressivity(aggressivity);
-        hero.setMagicResist(magicResist);
-        hero.setArmor(armor);
-        hero.setBlood(blood);
-        hero.setMagic(magic);
+        hero.setPower(hero.getPower()+power);
+        hero.setMentality(hero.getMentality()+mentality);
+        hero.setAgile(hero.getAgile()+agile);
+        hero.setAggressivity(hero.getAggressivity()+aggressivity);
+        hero.setMagicResist(hero.getMagicResist()+magicResist);
+        hero.setArmor(hero.getArmor()+armor);
+        hero.setBlood(hero.getBlood()+blood);
+        hero.setMagic(hero.getMagic()+magic);
         return hero;
     }
     
@@ -110,7 +112,7 @@ public class EmpiricalUtil {
         if (levelSub > 5 || levelSub < -5){
             return 0;
         }
-        double offset = 1;
+        double offset = 0.01;
         double currentLevelExp = getLevelUpEmp(heroLevel);
         switch (monsterPotential){
             case A:

@@ -3,6 +3,7 @@ package com.yezhihun.demo.util;
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
 import com.yezhihun.demo.entity.monster.Monster;
+import com.yezhihun.demo.entity.monster.Slime;
 import com.yezhihun.demo.enums.MonsterPotential;
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
@@ -42,6 +43,29 @@ public class RandomUtil {
         int random = (int)(Math.random()*100);
         Potential pp = Potential.C;
         for (Potential p : Potential.values()){
+            if(p.getValue() >= 100 - random){
+                if (p.getValue() < pp.getValue()){
+                    pp = p;
+                } else if (p.getValue() == pp.getValue()){
+                    int x = (int)(Math.random()*100);
+                    if (x>50){
+                        pp = p;
+                    }
+                }
+            }
+        }
+//        System.out.println("potential random:" + random + ",value is " + pp.getDesc());
+        return pp;
+    }
+
+    /**
+     * 按照概率随机生成怪物潜力值
+     * @return
+     */
+    public static MonsterPotential getRandomMonsterPotential(){
+        int random = (int)(Math.random()*100);
+        MonsterPotential pp = MonsterPotential.C;
+        for (MonsterPotential p : MonsterPotential.values()){
             if(p.getValue() >= 100 - random){
                 if (p.getValue() < pp.getValue()){
                     pp = p;
@@ -103,7 +127,7 @@ public class RandomUtil {
         return (int)(((Math.random()*100 * (max - min))/100 + min) * base);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws CloneNotSupportedException {
 //        int countC = 0;
 //        int countB = 0;
 //        int countA = 0;
@@ -165,11 +189,16 @@ public class RandomUtil {
         lvbu.setE5(ee5);
 
 
-        try {
-            CalculatAttribute.battle(CalculatAttribute.calculatHeroAttr(zhangfei), CalculatAttribute.calculatHeroAttr(lvbu));
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+        for (int i=0;i<100;i++){
+            Monster monster = RandomUtil.getRandomMonster(new Slime(), getRandomMonsterPotential());
+            zhangfei = (Hero) CalculatAttribute.battle(zhangfei, CalculatAttribute.calculatHeroAttr(zhangfei), monster);
         }
+
+//        try {
+//            CalculatAttribute.battle(CalculatAttribute.calculatHeroAttr(zhangfei), CalculatAttribute.calculatHeroAttr(lvbu));
+//        } catch (CloneNotSupportedException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
