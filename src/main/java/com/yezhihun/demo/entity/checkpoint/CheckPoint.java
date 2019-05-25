@@ -1,10 +1,10 @@
-package com.yezhihun.demo.entity.map;
+package com.yezhihun.demo.entity.checkpoint;
 
 /**
  * Created by tianye on 2019/5/25.
  * 地图
  */
-public class Map {
+public class CheckPoint {
 
     /**
      * 地图名称

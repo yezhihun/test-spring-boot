@@ -2,6 +2,7 @@ package com.yezhihun.demo.util;
 
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
+import com.yezhihun.demo.entity.checkpoint.CheckPoint;
 import com.yezhihun.demo.entity.monster.Monster;
 import com.yezhihun.demo.entity.monster.Slime;
 import com.yezhihun.demo.enums.MonsterPotential;
@@ -116,6 +117,20 @@ public class RandomUtil {
     }
 
     /**
+     * 根据地图随机生成怪物(地图等级*5且向上浮动5以内)
+     * @param checkPoint
+     * @param monster
+     * @param potential
+     * @return
+     */
+    public static Monster getRandomMonster(CheckPoint checkPoint, Monster monster, MonsterPotential potential){
+        int baseLevel = checkPoint.getLevel()*5;
+        int random = (int)(Math.random()*100/20);
+        monster.setLevel(baseLevel + random);
+        return getRandomMonster(monster, potential);
+    }
+
+    /**
      * 根据最大最小偏差和基准值获得随机值
      * @param min
      * @param max
@@ -191,7 +206,7 @@ public class RandomUtil {
 
         for (int i=0;i<100;i++){
             Monster monster = RandomUtil.getRandomMonster(new Slime(), getRandomMonsterPotential());
-            zhangfei = (Hero) CalculatAttribute.battle(zhangfei, CalculatAttribute.calculatHeroAttr(zhangfei), monster);
+            CalculatAttribute.battle(zhangfei, CalculatAttribute.calculatHeroAttr(zhangfei), monster);
         }
 
 //        try {

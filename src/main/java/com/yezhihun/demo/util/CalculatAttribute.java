@@ -17,9 +17,14 @@ public class CalculatAttribute {
      * @return
      * @throws CloneNotSupportedException
      */
-    public static Hero calculatHeroAttr(final Hero hero) throws CloneNotSupportedException {
-        Hero newHero = hero.clone();
-        return calculatByEquip(newHero, hero.getE1(), hero.getE2(), hero.getE3(), hero.getE4(), hero.getE5(), hero.getE6());
+    public static Hero calculatHeroAttr(final Hero hero) {
+        try {
+            Hero newHero = hero.clone();
+            return calculatByEquip(newHero, hero.getE1(), hero.getE2(), hero.getE3(), hero.getE4(), hero.getE5(), hero.getE6());
+        } catch (CloneNotSupportedException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -81,7 +86,7 @@ public class CalculatAttribute {
      * @param right
      * @return
      */
-    public static Biology battle(Biology trueLeft, Biology left, Biology right){
+    public static boolean battle(Biology trueLeft, Biology left, Biology right){
         System.out.println(left.getName() +"[等级"+trueLeft.getLevel()+",攻击力:"+left.getAggressivity()+",血量:"+left.getBlood()+"]");
         System.out.println("---------VS----------");
         System.out.println(right.getName() +"[攻击力:"+right.getAggressivity()+",血量:"+right.getBlood()+"]");
@@ -95,7 +100,7 @@ public class CalculatAttribute {
         if (left.getBlood() > 0 && left instanceof Hero && right instanceof Monster){
             EmpiricalUtil.getEmpByHeroAndMonster((Hero) trueLeft, (Monster) right);
         }
-        return left.getBlood()>=0?trueLeft:right;
+        return left.getBlood()>=0?true:false;
     }
 
     private static void attack(Biology attacker, Biology attacked){
