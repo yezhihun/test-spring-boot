@@ -5,13 +5,16 @@ package com.yezhihun.demo.entity;
  */
 public class BaseTable {
 
-    private String test;
+    /**
+     * 唯一
+     */
+    protected boolean unique;
 
-    public String getTest() {
-        return test;
+    public boolean isUnique() {
+        return unique;
     }
 
-    public void setTest(String test) {
-        this.test = test;
+    public void setUnique(boolean unique) {
+        this.unique = unique;
     }
 }
