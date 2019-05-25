@@ -1,5 +1,6 @@
 package com.yezhihun.demo.util;
 
+import com.yezhihun.demo.entity.Biology;
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
 import com.yezhihun.demo.enums.Occupation;
@@ -79,7 +80,7 @@ public class CalculatAttribute {
      * @param right
      * @return
      */
-    public static Hero battle(Hero left, Hero right){
+    public static Biology battle(Biology left, Biology right){
         System.out.println(left.getName() +"[攻击力:"+left.getAggressivity()+",血量:"+left.getBlood()+"]");
         System.out.println("---------VS----------");
         System.out.println(right.getName() +"[攻击力:"+right.getAggressivity()+",血量:"+right.getBlood()+"]");
@@ -93,7 +94,7 @@ public class CalculatAttribute {
         return left.getBlood()>=0?left:right;
     }
 
-    private static void attack(Hero attacker, Hero attacked){
+    private static void attack(Biology attacker, Biology attacked){
         /**
          * TODO 增加伤害上下限，
          * 增加护甲魔抗伤害减免

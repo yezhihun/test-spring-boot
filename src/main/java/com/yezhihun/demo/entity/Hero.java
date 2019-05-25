@@ -2,17 +2,15 @@ package com.yezhihun.demo.entity;
 
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
-import com.yezhihun.demo.util.CalculatAttribute;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by tianye on 2019/5/20.
  */
 @Entity
 @Table(name = "hero")
-public class Hero extends BaseTable implements Serializable, Cloneable {
+public class Hero extends Biology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,42 +18,6 @@ public class Hero extends BaseTable implements Serializable, Cloneable {
      * 英雄姓名
      */
     private String name;
-    /**
-     * 职业
-     */
-    private Occupation occupation;
-    /**
-     * 智力值
-     */
-    private Integer mentality;
-    /**
-     * 力量值
-     */
-    private Integer power;
-    /**
-     * 敏捷值
-     */
-    private Integer agile;
-    /**
-     * 护甲
-     */
-    private Integer armor;
-    /**
-     * 魔抗
-     */
-    private Integer magicResist;
-    /**
-     * 血量
-     */
-    private Integer blood;
-    /**
-     * 魔法值
-     */
-    private Integer magic;
-    /**
-     * 攻击力
-     */
-    private Integer aggressivity;
     /**
      * 装备
      */
@@ -72,7 +34,7 @@ public class Hero extends BaseTable implements Serializable, Cloneable {
     /**
      * 经验值
      */
-    private Integer exp;
+    private long exp;
     /**
      * 潜力值
      */
@@ -119,38 +81,6 @@ public class Hero extends BaseTable implements Serializable, Cloneable {
         this.name = name;
     }
 
-    public Occupation getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(Occupation occupation) {
-        this.occupation = occupation;
-    }
-
-    public Integer getMentality() {
-        return mentality;
-    }
-
-    public void setMentality(Integer mentality) {
-        this.mentality = mentality;
-    }
-
-    public Integer getPower() {
-        return power;
-    }
-
-    public void setPower(Integer power) {
-        this.power = power;
-    }
-
-    public Integer getArmor() {
-        return armor;
-    }
-
-    public void setArmor(Integer armor) {
-        this.armor = armor;
-    }
-
     public Integer getLevel() {
         return level;
     }
@@ -159,11 +89,11 @@ public class Hero extends BaseTable implements Serializable, Cloneable {
         this.level = level;
     }
 
-    public Integer getExp() {
+    public long getExp() {
         return exp;
     }
 
-    public void setExp(Integer exp) {
+    public void setExp(long exp) {
         this.exp = exp;
     }
 
@@ -180,46 +110,6 @@ public class Hero extends BaseTable implements Serializable, Cloneable {
                 occupation.getDesc(), potential.getDesc(), this.getPower(),
                 this.getMentality(), this.getArmor(), this.getAgile(), this.getAggressivity(), power + mentality + agile);
         return desc;
-    }
-
-    public Integer getAgile() {
-        return agile;
-    }
-
-    public void setAgile(Integer agile) {
-        this.agile = agile;
-    }
-
-    public Integer getMagicResist() {
-        return magicResist;
-    }
-
-    public void setMagicResist(Integer magicResist) {
-        this.magicResist = magicResist;
-    }
-
-    public Integer getBlood() {
-        return this.blood;
-    }
-
-    public void setBlood(Integer blood) {
-        this.blood = blood;
-    }
-
-    public Integer getMagic() {
-        return magic;
-    }
-
-    public void setMagic(Integer magic) {
-        this.magic = magic;
-    }
-
-    public Integer getAggressivity() {
-        return aggressivity;
-    }
-
-    public void setAggressivity(Integer aggressivity) {
-        this.aggressivity = aggressivity;
     }
 
     public Equip getE1() {
