@@ -5,9 +5,11 @@ import com.yezhihun.demo.entity.Hero;
 import com.yezhihun.demo.entity.checkpoint.CheckPoint;
 import com.yezhihun.demo.entity.monster.Monster;
 import com.yezhihun.demo.entity.monster.Slime;
+import com.yezhihun.demo.enums.EquipPotenial;
 import com.yezhihun.demo.enums.MonsterPotential;
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
+import com.yezhihun.demo.template.EquipTemplate;
 
 /**
  * Created by tianye on 2019/5/20.
@@ -83,6 +85,28 @@ public class RandomUtil {
     }
 
     /**
+     * 按照概率随机生成装备潜力值
+     * @return
+     */
+    public static EquipPotenial getRandomEquipPotential(){
+        int random = (int)(Math.random()*100);
+        EquipPotenial pp = EquipPotenial.C;
+        for (EquipPotenial p : EquipPotenial.values()){
+            if(p.getValue() >= 100 - random){
+                if (p.getValue() < pp.getValue()){
+                    pp = p;
+                } else if (p.getValue() == pp.getValue()){
+                    int x = (int)(Math.random()*100);
+                    if (x>50){
+                        pp = p;
+                    }
+                }
+            }
+        }
+        return pp;
+    }
+
+    /**
      * 随机生成英雄
      * @param hero
      * @param potential
@@ -128,6 +152,22 @@ public class RandomUtil {
         int random = (int)(Math.random()*100/20);
         monster.setLevel(baseLevel + random);
         return getRandomMonster(monster, potential);
+    }
+
+    /**
+     * 根据模板生成武器
+     * @param equipTemplate
+     * @param potenial
+     * @return
+     */
+    public static Equip getRandomEquipByTemplate(EquipTemplate equipTemplate, EquipPotenial potenial){
+        //TODO 获得相应等级的装备模板
+
+        return null;
+    }
+
+    public static Equip getRandomEquipByTemplate(EquipTemplate equipTemplate){
+        return getRandomEquipByTemplate(equipTemplate, getRandomEquipPotential());
     }
 
     /**

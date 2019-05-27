@@ -4,6 +4,7 @@ import com.yezhihun.demo.dao.BaseDao;
 import com.yezhihun.demo.service.BaseService;
 import org.apache.log4j.Logger;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -31,6 +32,7 @@ public abstract class AbstractBaseServiceImpl<T> implements BaseService<T> {
 		baseDao.delete(id);
 	}
 
+	@PostConstruct
     public void insert(T t){
     	try{
     		baseDao.save(t);

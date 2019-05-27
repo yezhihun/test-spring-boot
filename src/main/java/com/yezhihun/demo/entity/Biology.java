@@ -2,6 +2,9 @@ package com.yezhihun.demo.entity;
 
 import com.yezhihun.demo.enums.Occupation;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -9,8 +12,11 @@ import java.io.Serializable;
  */
 public class Biology extends BaseTable implements Serializable, Cloneable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     /**
-     * 怪物名称
+     * 名称
      */
     protected String name;
     /**
@@ -140,5 +146,13 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
 
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

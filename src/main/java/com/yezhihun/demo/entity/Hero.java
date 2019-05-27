@@ -11,9 +11,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "hero")
 public class Hero extends Biology {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     /**
      * 英雄姓名
      */
@@ -60,14 +57,6 @@ public class Hero extends Biology {
             case AGILE:
                 this.agile = 120;
         }
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
