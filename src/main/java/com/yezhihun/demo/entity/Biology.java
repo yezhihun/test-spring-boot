@@ -17,46 +17,57 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
     /**
      * 名称
      */
+    @Column(name = "name", nullable = false, columnDefinition = "int default 0 COMMENT '名称'")
     protected String name;
     /**
      * 智力值
      */
+    @Column(name = "mentality", nullable = false, columnDefinition = "int default 0 COMMENT '智力值'")
     protected int mentality;
     /**
      * 力量值
      */
+    @Column(name = "power", nullable = false, columnDefinition = "int default 0 COMMENT '力量值'")
     protected int power;
     /**
      * 敏捷值
      */
+    @Column(name = "agile", nullable = false, columnDefinition = "int default 0 COMMENT '敏捷值'")
     protected int agile;
     /**
      * 护甲
      */
+    @Column(name = "armor", nullable = false, columnDefinition = "int default 0 COMMENT '护甲'")
     protected int armor;
     /**
      * 魔抗
      */
+    @Column(name = "magic_resist", nullable = false, columnDefinition = "int default 0 COMMENT '魔抗'")
     protected int magicResist;
     /**
      * 血量
      */
+    @Column(name = "blood", nullable = false, columnDefinition = "int default 0 COMMENT '血量'")
     protected int blood;
     /**
      * 魔法值
      */
+    @Column(name = "magic", nullable = false, columnDefinition = "int default 0 COMMENT '魔法值'")
     protected int magic;
     /**
      * 攻击力
      */
+    @Column(name = "aggressivity", nullable = false, columnDefinition = "int default 0 COMMENT '攻击力'")
     protected int aggressivity;
     /**
      * 等级
      */
-    protected int level = 1;
+    @Column(name = "level", nullable = false, columnDefinition = "int default 0 COMMENT '等级'")
+    protected int level;
     /**
      * 职业
      */
+    @Column(name = "occupation", columnDefinition = "varchar(100) COMMENT '职业'")
     protected Occupation occupation;
 
     public String getName() {

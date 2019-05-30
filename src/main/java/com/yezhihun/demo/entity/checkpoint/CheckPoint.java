@@ -18,18 +18,22 @@ public class CheckPoint extends BaseTable{
     /**
      * 地图名称
      */
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) COMMENT '地图名称'")
     protected String name;
     /**
      * 地图等级
      */
+    @Column(name = "level", nullable = false, columnDefinition = "int default 1 COMMENT '地图等级'")
     protected int level;
     /**
      * 最低怪物等级
      */
+    @Column(name = "min_monster_level", nullable = false, columnDefinition = "int default 0 COMMENT '最低怪物等级'")
     protected int minMonsterLevel;
     /**
      * 最高怪物等级
      */
+    @Column(name = "max_monster_level", nullable = false, columnDefinition = "int default 0 COMMENT '最高怪物等级'")
     protected int maxMonsterLevel;
 
     public String getName() {
