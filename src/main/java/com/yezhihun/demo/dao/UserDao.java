@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface UserDao extends BaseDao<User>{
 
     @Query("select t from User t where t.id = :id")
-    User findById(Integer id);
+    User getById(Integer id);
+
 }

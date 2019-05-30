@@ -5,10 +5,9 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.bind.RelaxedDataBinder;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
@@ -22,7 +21,11 @@ import java.util.Map;
 /**
  * Created by tianye on 2018/5/7.
  */
+@Configuration
 public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware {
+
+//    @Value("${spring.datasource.url}")
+//    private String url1;
 
     //如配置文件中未指定数据源类型，使用该默认值
     private static final Object DATASOURCE_TYPE_DEFAULT = "org.apache.tomcat.jdbc.pool.DataSource";
@@ -71,13 +74,13 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
      */
     private void initDefaultDataSource(Environment env) {
         // 读取主数据源
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
+//        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
         Map<String, Object> dsMap = new HashMap<String, Object>();
-        dsMap.put("type", propertyResolver.getProperty("type"));
-        dsMap.put("driver-class-name", propertyResolver.getProperty("driverClassName"));
-        dsMap.put("url", propertyResolver.getProperty("url"));
-        dsMap.put("username", propertyResolver.getProperty("username"));
-        dsMap.put("password", propertyResolver.getProperty("password"));
+        dsMap.put("type", "com.alibaba.druid.pool.DruidDataSource");
+        dsMap.put("driver-class-name", "com.mysql.jdbc.Driver");
+        dsMap.put("url", "jdbc:mysql://localhost:3306/dj?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8");
+        dsMap.put("username", "dj");
+        dsMap.put("password", "password");
 
         //创建数据源;
         defaultDataSource = buildDataSource(dsMap);
@@ -89,15 +92,15 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
      */
     private void initCustomDataSources(Environment env) {
         // 读取配置文件获取更多数据源，也可以通过defaultDataSource读取数据库获取更多数据源
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.read-datasource.");
-        String dsPrefixs = propertyResolver.getProperty("names");
-        for (String dsPrefix : dsPrefixs.split(",")) {// 多个数据源
-            Map<String, Object> dsMap = propertyResolver.getSubProperties(dsPrefix + ".");
-            DataSource ds = buildDataSource(dsMap);
-            customDataSources.put(dsPrefix, ds);
-            DynamicDataSourceContextHolder.dataSourceIds.add(dsPrefix);
-            dataBinder(ds, env);
-        }
+//        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.read-datasource.");
+//        String dsPrefixs = propertyResolver.getProperty("names");
+//        for (String dsPrefix : dsPrefixs.split(",")) {// 多个数据源
+//            Map<String, Object> dsMap = propertyResolver.getSubProperties(dsPrefix + ".");
+//            DataSource ds = buildDataSource(dsMap);
+//            customDataSources.put(dsPrefix, ds);
+//            DynamicDataSourceContextHolder.dataSourceIds.add(dsPrefix);
+//            dataBinder(ds, env);
+//        }
     }
 
     /**
@@ -129,23 +132,23 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
      * 为DataSource绑定更多数据
      */
     private void dataBinder(DataSource dataSource, Environment env) {
-        RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
-        dataBinder.setConversionService(conversionService);
-        dataBinder.setIgnoreNestedProperties(false);//false
-        dataBinder.setIgnoreInvalidFields(false);//false
-        dataBinder.setIgnoreUnknownFields(true);//true
-
-        if (dataSourcePropertyValues == null) {
-            Map<String, Object> rpr = new RelaxedPropertyResolver(env, "spring.datasource").getSubProperties(".");
-            Map<String, Object> values = new HashMap<>(rpr);
-            // 排除已经设置的属性
-            values.remove("type");
-            values.remove("driverClassName");
-            values.remove("url");
-            values.remove("username");
-            values.remove("password");
-            dataSourcePropertyValues = new MutablePropertyValues(values);
-        }
-        dataBinder.bind(dataSourcePropertyValues);
+//        RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
+//        dataBinder.setConversionService(conversionService);
+//        dataBinder.setIgnoreNestedProperties(false);//false
+//        dataBinder.setIgnoreInvalidFields(false);//false
+//        dataBinder.setIgnoreUnknownFields(true);//true
+//
+//        if (dataSourcePropertyValues == null) {
+//            Map<String, Object> rpr = new RelaxedPropertyResolver(env, "spring.datasource").getSubProperties(".");
+//            Map<String, Object> values = new HashMap<>(rpr);
+//            // 排除已经设置的属性
+//            values.remove("type");
+//            values.remove("driverClassName");
+//            values.remove("url");
+//            values.remove("username");
+//            values.remove("password");
+//            dataSourcePropertyValues = new MutablePropertyValues(values);
+//        }
+//        dataBinder.bind(dataSourcePropertyValues);
     }
 }

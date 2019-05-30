@@ -28,7 +28,7 @@ public abstract class AbstractBaseServiceImpl<T> implements BaseService<T> {
 	protected Logger log = Logger.getLogger(this.getClass());
 	
 	public void deleteByPrimaryKey(Integer id){
-		baseDao.delete(id);
+		baseDao.deleteById(id);
 	}
 
     public void insert(T t){
@@ -40,7 +40,7 @@ public abstract class AbstractBaseServiceImpl<T> implements BaseService<T> {
     }
 
     public T selectByPrimaryKey(Integer id){
-		return baseDao.findOne(id);
+		return baseDao.getOne(id);
     }
 
     public List<T> findAll(){
