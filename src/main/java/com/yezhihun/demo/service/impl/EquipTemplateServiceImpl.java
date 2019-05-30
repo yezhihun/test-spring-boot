@@ -2,7 +2,7 @@ package com.yezhihun.demo.service.impl;
 
 import com.yezhihun.demo.dao.EquipTemplateDao;
 import com.yezhihun.demo.service.EquipTemplateService;
-import com.yezhihun.demo.template.EquipTemplate;
+import com.yezhihun.demo.entity.template.EquipTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

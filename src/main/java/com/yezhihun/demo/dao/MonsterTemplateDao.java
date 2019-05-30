@@ -1,6 +1,6 @@
 package com.yezhihun.demo.dao;
 
-import com.yezhihun.demo.template.MonsterTemplate;
+import com.yezhihun.demo.entity.template.MonsterTemplate;
 import org.springframework.stereotype.Repository;
 
 /**

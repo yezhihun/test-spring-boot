@@ -6,8 +6,6 @@ import com.yezhihun.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-
 /**
  * Created by tianye on 2018/5/3.
  */
@@ -18,7 +16,6 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User> implements Us
     private UserDao userRepository;
 
     @Override
-    @PostConstruct
     public void init() {
         this.baseDao = userRepository;
     }

@@ -1,6 +1,6 @@
 package com.yezhihun.demo.service;
 
-import com.yezhihun.demo.template.EquipTemplate;
+import com.yezhihun.demo.entity.template.EquipTemplate;
 
 import java.util.List;
 

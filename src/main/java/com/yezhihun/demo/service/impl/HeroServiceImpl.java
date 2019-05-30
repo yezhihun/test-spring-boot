@@ -9,8 +9,6 @@ import com.yezhihun.demo.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-
 /**
  * Created by tianye on 2019/5/20.
  */
@@ -21,7 +19,6 @@ public class HeroServiceImpl extends AbstractBaseServiceImpl<Hero> implements He
     private HeroDao heroDao;
 
     @Override
-    @PostConstruct
     public void init() {
         this.baseDao = heroDao;
     }

@@ -2,7 +2,7 @@ package com.yezhihun.demo.service;
 
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
-import com.yezhihun.demo.template.EquipTemplate;
+import com.yezhihun.demo.entity.template.EquipTemplate;
 
 /**
  * Created by tianye on 2019/5/27.

@@ -1,4 +1,4 @@
-package com.yezhihun.demo.template;
+package com.yezhihun.demo.entity.template;
 
 import com.yezhihun.demo.entity.Biology;
 import com.yezhihun.demo.enums.Potential;

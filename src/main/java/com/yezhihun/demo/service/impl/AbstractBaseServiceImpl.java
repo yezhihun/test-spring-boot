@@ -33,6 +33,10 @@ public abstract class AbstractBaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@PostConstruct
+	public void init(){
+
+	}
+
     public void insert(T t){
     	try{
     		baseDao.save(t);

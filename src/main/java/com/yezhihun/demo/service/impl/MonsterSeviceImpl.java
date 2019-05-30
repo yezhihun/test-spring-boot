@@ -6,8 +6,6 @@ import com.yezhihun.demo.service.MonsterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-
 /**
  * Created by tianye on 2019/5/25.
  */
@@ -17,7 +15,6 @@ public class MonsterSeviceImpl extends AbstractBaseServiceImpl<Monster> implemen
     private MonsterDao monsterDao;
 
     @Override
-    @PostConstruct
     public void init() {
         this.baseDao = monsterDao;
     }

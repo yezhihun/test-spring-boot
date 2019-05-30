@@ -11,8 +11,6 @@ import com.yezhihun.demo.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-
 /**
  * Created by tianye on 2019/5/25.
  */
@@ -24,7 +22,6 @@ public class CheckPointServiceImpl extends AbstractBaseServiceImpl<CheckPoint> i
     private EquipTemplateService equipTemplateService;
 
     @Override
-    @PostConstruct
     public void init() {
         this.baseDao = mapDao;
     }

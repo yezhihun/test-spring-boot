@@ -2,7 +2,7 @@ package com.yezhihun.demo.service.impl;
 
 import com.yezhihun.demo.dao.MonsterTemplateDao;
 import com.yezhihun.demo.service.MonsterTemplateService;
-import com.yezhihun.demo.template.MonsterTemplate;
+import com.yezhihun.demo.entity.template.MonsterTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,13 @@
 package com.yezhihun.demo.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * 装备
  */
+@Entity
+@Table(name = "equip")
 public class Equip extends Biology{
 
 

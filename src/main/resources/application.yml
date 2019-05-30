@@ -39,7 +39,7 @@ spring:
     show-sql: true
     database: mysql
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

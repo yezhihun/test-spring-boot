@@ -1,6 +1,6 @@
 package com.yezhihun.demo.dao;
 
-import com.yezhihun.demo.template.EquipTemplate;
+import com.yezhihun.demo.entity.template.EquipTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

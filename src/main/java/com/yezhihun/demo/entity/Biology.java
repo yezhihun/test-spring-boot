@@ -8,8 +8,7 @@ import java.io.Serializable;
 /**
  * Created by tianye on 2019/5/24.
  */
-@Entity
-@Table(name = "biology")
+@MappedSuperclass
 public class Biology extends BaseTable implements Serializable, Cloneable{
 
     @Id

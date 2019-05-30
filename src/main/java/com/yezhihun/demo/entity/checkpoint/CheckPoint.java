@@ -1,11 +1,20 @@
 package com.yezhihun.demo.entity.checkpoint;
 
+import com.yezhihun.demo.entity.BaseTable;
+
+import javax.persistence.*;
+
 /**
  * Created by tianye on 2019/5/25.
  * 地图
  */
-public class CheckPoint {
+@Entity
+@Table(name = "check_point")
+public class CheckPoint extends BaseTable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     /**
      * 地图名称
      */
@@ -53,5 +62,13 @@ public class CheckPoint {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

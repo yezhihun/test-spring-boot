@@ -9,7 +9,7 @@ import com.yezhihun.demo.enums.EquipPotenial;
 import com.yezhihun.demo.enums.MonsterPotential;
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
-import com.yezhihun.demo.template.EquipTemplate;
+import com.yezhihun.demo.entity.template.EquipTemplate;
 
 /**
  * Created by tianye on 2019/5/20.
