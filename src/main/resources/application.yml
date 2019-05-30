@@ -1,9 +1,9 @@
 spring:
   datasource:
-    username: poem
-    password: poem
+    username: game
+    password: game
     #本地数据库配置
-    url: jdbc:mysql://localhost:3306/poem?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/game?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
     driver-class-name: com.mysql.jdbc.Driver
     #sql-script-encoding: utf-8
     maximum-pool-size: 100
@@ -19,10 +19,10 @@ spring:
   read-datasource:
       names: read
       read:
-        username: yezhihun
-        password: yezhihun
+        username: game
+        password: game
         #本地数据库配置
-        url: jdbc:mysql://localhost:3306/test?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
+        url: jdbc:mysql://localhost:3306/game?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
         driver-class-name: com.mysql.jdbc.Driver
         #sql-script-encoding: utf-8
         maximum-pool-size: 100
@@ -49,15 +49,15 @@ spring:
       enabled: true
       force: true
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: test
-    password: test
-    virtual-host: test
-    listener:
-      simple:
-        acknowledge-mode: manual
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: test
+#    password: test
+#    virtual-host: test
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
 server:
   port: 8020
   tomcat:

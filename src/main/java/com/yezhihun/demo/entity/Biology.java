@@ -2,14 +2,14 @@ package com.yezhihun.demo.entity;
 
 import com.yezhihun.demo.enums.Occupation;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by tianye on 2019/5/24.
  */
+@Entity
+@Table(name = "biology")
 public class Biology extends BaseTable implements Serializable, Cloneable{
 
     @Id
