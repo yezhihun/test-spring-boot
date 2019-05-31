@@ -21,14 +21,12 @@ public class RedisConfig {
 	private Integer port;
 	@Value("${redis.timeout}")
 	private int timeout;
-	@Value("${redis.jedis.pool.max-idle}")
+	@Value("${redis.max-idle}")
 	private int maxIdle;
-	@Value("${redis.jedis.pool.min-idle}")
+	@Value("${redis.min-idle}")
 	private int minIdle;
-	@Value("${redis.jedis.pool.max-wait}")
+	@Value("${redis.max-wait}")
 	private long maxWaitMillis;
-	@Value("${redis.commandTimeout}")
-	private int commandTimeout;
 
 	@Bean
 	public JedisPool getJedisPool() {

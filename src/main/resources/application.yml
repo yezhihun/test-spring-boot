@@ -64,3 +64,11 @@ server:
   port: 8020
   tomcat:
     uri-encoding: UTF-8
+
+redis:
+    host: 127.0.0.1
+    max-wait: 5000
+    max-idle: 50
+    min-idle: 5
+    port: 6379
+    timeout: 50000
