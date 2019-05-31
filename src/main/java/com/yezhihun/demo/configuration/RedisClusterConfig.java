@@ -14,8 +14,8 @@ import redis.clients.jedis.JedisPoolConfig;
 /**
  * redis配置
  */
-@Configuration
-@ConditionalOnClass({ JedisCluster.class })
+//@Configuration
+//@ConditionalOnClass({ JedisCluster.class })
 public class RedisClusterConfig {
 	// 超时时间
 	@Value("${redis.timeout}")

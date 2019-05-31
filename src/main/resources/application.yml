@@ -1,10 +1,10 @@
 spring:
   datasource:
     master:
-      username: dj
-      password: password
+      username: root
+      password: root
       #本地数据库配置
-      url: jdbc:mysql://localhost:3306/dj?autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
+      url: jdbc:mysql://localhost:3306/test?useSSL=false&;autoReconnect=true&;useOldAliasMetadataBehavior=true&;useUnicode=true&;characterEncoding=UTF-8
       driver-class-name: com.mysql.jdbc.Driver
       #sql-script-encoding: utf-8
       maximum-pool-size: 100
