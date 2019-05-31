@@ -25,7 +25,7 @@ public class DataSourceAspect {
         } else {
             System.out.println("Use DataSource : {} > {}"+targetDataSource.value()+point.getSignature());
             //找到的话，那么设置到动态数据源上下文中。
-            DynamicDataSourceContextHolder.setDataSourceType(targetDataSource.value());
+            DynamicDataSourceContextHolder.setDataSourceRouterKey(targetDataSource.value());
         }
     }
 
@@ -33,6 +33,6 @@ public class DataSourceAspect {
     public void after(JoinPoint point, TargetDataSource targetDataSource){
         System.out.println("Revert DataSource : {} > {}"+targetDataSource.value()+point.getSignature());
         //方法执行完毕之后，销毁当前数据源信息，进行垃圾回收。
-        DynamicDataSourceContextHolder.clearDataSourceType();
+        DynamicDataSourceContextHolder.removeDataSourceRouterKey();
     }
 }
