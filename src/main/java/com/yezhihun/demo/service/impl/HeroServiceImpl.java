@@ -46,7 +46,9 @@ public class HeroServiceImpl extends AbstractBaseServiceImpl<Hero> implements He
         if (potential == null){
             potential = RandomUtil.getRandomPotential();
         }
-        return RandomUtil.getRandomHero(new Hero(occupation), potential);
+        Hero hero = RandomUtil.getRandomHero(new Hero(occupation), potential);
+        heroDao.save(hero);
+        return hero;
     }
 
 }

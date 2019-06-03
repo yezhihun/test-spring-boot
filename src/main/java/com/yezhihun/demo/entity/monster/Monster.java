@@ -3,8 +3,7 @@ package com.yezhihun.demo.entity.monster;
 import com.yezhihun.demo.entity.Biology;
 import com.yezhihun.demo.enums.MonsterPotential;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * 怪物
@@ -17,6 +16,8 @@ public class Monster extends Biology{
     /**
      * 怪物潜力值
      */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "monster_potenial", columnDefinition = "varchar(100) COMMENT '怪物品级'")
     protected MonsterPotential monsterPotential;
 
 

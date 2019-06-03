@@ -162,8 +162,24 @@ public class RandomUtil {
      */
     public static Equip getRandomEquipByTemplate(EquipTemplate equipTemplate, EquipPotenial potenial){
         //TODO 获得相应等级的装备模板
+        /**
+         * 根据模板复制基础属性装备
+         * 根据装备品级调整属性
+         */
+        Equip equip = new Equip();
+        double min = potenial.getMin();
+        double max = potenial.getMax();
+        equip.setAggressivity(getRealValueBetween(min, max, equipTemplate.getAggressivity()));
+        equip.setAgile(getRealValueBetween(min, max, equipTemplate.getAgile()));
+        equip.setArmor(getRealValueBetween(min, max, equipTemplate.getArmor()));
+        equip.setBlood(getRealValueBetween(min, max, equipTemplate.getBlood()));
+        equip.setMagic(getRealValueBetween(min, max, equipTemplate.getMagic()));
+        equip.setMagicResist(getRealValueBetween(min, max, equipTemplate.getMagicResist()));
+        equip.setMentality(getRealValueBetween(min, max, equipTemplate.getMentality()));
+        equip.setPower(getRealValueBetween(min, max, equipTemplate.getPower()));
+        equip.setLevel(equipTemplate.getLevel());
 
-        return null;
+        return equip;
     }
 
     public static Equip getRandomEquipByTemplate(EquipTemplate equipTemplate){
@@ -178,7 +194,6 @@ public class RandomUtil {
      * @return
      */
     private static int getRealValueBetween(double min, double max, int base){
-
         return (int)(((Math.random()*100 * (max - min))/100 + min) * base);
     }
 

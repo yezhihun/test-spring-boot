@@ -5,7 +5,6 @@ import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
 import com.yezhihun.demo.service.EquipService;
 import com.yezhihun.demo.service.EquipTemplateService;
-import com.yezhihun.demo.entity.template.EquipTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,8 @@ public class EquipServiceImpl extends AbstractBaseServiceImpl<Equip> implements 
 
 
     @Override
-    public boolean insertEquipByTemplateForHero(EquipTemplate equipTemplate, Hero hero) {
-        return false;
+    public Equip insertEquipForHero(Equip equip, Hero hero) {
+        equip.setOwner(hero);
+        return equipDao.save(equip);
     }
 }

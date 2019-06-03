@@ -18,7 +18,7 @@ public class HeroController {
 
     @RequestMapping("/createHero")
     public JSONObject createHero(){
-
+        heroService.createHero();
         return null;
     }
 }

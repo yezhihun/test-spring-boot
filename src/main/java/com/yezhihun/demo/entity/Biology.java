@@ -17,7 +17,7 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
     /**
      * 名称
      */
-    @Column(name = "name", nullable = false, columnDefinition = "int default 0 COMMENT '名称'")
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) COMMENT '名称'")
     protected String name;
     /**
      * 智力值
@@ -67,6 +67,7 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
     /**
      * 职业
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "occupation", columnDefinition = "varchar(100) COMMENT '职业'")
     protected Occupation occupation;
 
