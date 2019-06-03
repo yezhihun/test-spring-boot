@@ -18,11 +18,23 @@ public class Hero extends Biology {
     /**
      * 装备
      */
+    @OneToOne
+    @JoinColumn(name = "e1")
     private Equip e1;
+    @OneToOne
+    @JoinColumn(name = "e2")
     private Equip e2;
+    @OneToOne
+    @JoinColumn(name = "e3")
     private Equip e3;
+    @OneToOne
+    @JoinColumn(name = "e4")
     private Equip e4;
+    @OneToOne
+    @JoinColumn(name = "e5")
     private Equip e5;
+    @OneToOne
+    @JoinColumn(name = "e6")
     private Equip e6;
     /**
      * 经验值

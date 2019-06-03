@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by tianye on 2019/5/25.
  */
 @RestController
+@RequestMapping(value = "/checkPoint")
 public class CheckPointController {
 
     @Autowired
@@ -35,8 +36,7 @@ public class CheckPointController {
      * @param checkPointId
      * @return
      */
-
-    @RequestMapping(name = "battleMap", method = RequestMethod.POST)
+    @RequestMapping(value = "/battleMap", method = RequestMethod.POST)
     public JSONObject battleMap(@RequestParam(value = "heroId") int heroId, @RequestParam(value = "checkPointId") int checkPointId){
         Hero hero = heroService.selectByPrimaryKey(heroId);
         if (hero == null){

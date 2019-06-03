@@ -2,6 +2,7 @@ package com.yezhihun.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -14,7 +15,8 @@ public class Equip extends Biology{
     /**
      * 拥有者
      */
-    @JoinColumn(name = "equip_owner_fk")
+    @ManyToOne
+    @JoinColumn(name = "owner")
     private Hero owner;
 
     public Equip(){

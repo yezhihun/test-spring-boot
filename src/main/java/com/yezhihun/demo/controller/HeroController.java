@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by tianye on 2019/5/20.
  */
 @RestController
+@RequestMapping(value = "hero")
 public class HeroController {
 
     @Autowired
     private HeroService heroService;
 
 
-    @RequestMapping("/createHero")
+    @RequestMapping(value = "/create")
     public JSONObject createHero(){
         heroService.createHero();
         return null;
