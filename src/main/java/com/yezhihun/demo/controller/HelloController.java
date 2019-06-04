@@ -1,19 +1,24 @@
 package com.yezhihun.demo.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.yezhihun.demo.entity.User;
-import com.yezhihun.demo.service.UserService;
-import com.yezhihun.demo.util.TargetDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONObject;
+import com.yezhihun.demo.configuration.JedisProxy;
+import com.yezhihun.demo.entity.User;
+import com.yezhihun.demo.service.UserService;
+import com.yezhihun.demo.util.TargetDataSource;
 
 /**
  * Created by tianye on 2018/5/3.
  */
 @RestController
 public class HelloController {
+	
+	@Autowired
+	private JedisProxy jedisProxy;
 
     @Autowired
     private UserService userService;
@@ -23,6 +28,8 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String hello(){
+    	jedisProxy.getJedis().set("test", "hello dj");
+    	System.out.println(jedisProxy.getJedis().get("test"));
         return "hello spring-boot";
     }
 
@@ -41,8 +48,8 @@ public class HelloController {
     @ResponseBody
     @TargetDataSource("read")
     public JSONObject getByUserId2(Integer userId){
-        User user = userService.selectByPrimaryKey(1);
-
+        User user = userService.selectByPrimaryKey(userId);
+        System.out.println(user.getName());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("user", user);
 

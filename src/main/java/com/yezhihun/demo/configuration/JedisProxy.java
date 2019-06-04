@@ -1,8 +1,9 @@
-package com.yezhihun.demo.util;
+package com.yezhihun.demo.configuration;
 
 import java.lang.reflect.Method;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
@@ -10,10 +11,11 @@ import net.sf.cglib.proxy.InvocationHandler;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+@Component
 public class JedisProxy {
 	@Autowired
 	private JedisPool jedisPool;
-
+	
 	public Jedis getJedis() {
 		Enhancer enhancer = new Enhancer();
 		// 设置代理的父类，就设置需要代理的类
