@@ -4,12 +4,15 @@ import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
 import com.yezhihun.demo.entity.checkpoint.CheckPoint;
 import com.yezhihun.demo.entity.monster.Monster;
-import com.yezhihun.demo.entity.monster.Slime;
+import com.yezhihun.demo.entity.template.EquipTemplate;
+import com.yezhihun.demo.entity.template.HeroTemplate;
+import com.yezhihun.demo.entity.template.MonsterTemplate;
 import com.yezhihun.demo.enums.EquipPotenial;
 import com.yezhihun.demo.enums.MonsterPotential;
 import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
-import com.yezhihun.demo.entity.template.EquipTemplate;
+
+import java.util.List;
 
 /**
  * Created by tianye on 2019/5/20.
@@ -124,6 +127,29 @@ public class RandomUtil {
     }
 
     /**
+     * 根据模板随机生成英雄
+     * @param heroTemplate
+     * @param potential
+     * @return
+     */
+    public static Hero getRandomHero(HeroTemplate heroTemplate, Potential potential){
+        Hero hero = new Hero();
+        double max = potential.getMax();
+        double min = potential.getMin();
+        hero.setPotential(potential);
+        hero.setOccupation(heroTemplate.getOccupation());
+        hero.setMentality(getRealValueBetween(min, max, heroTemplate.getMentality()));
+        hero.setPower(getRealValueBetween(min, max, heroTemplate.getPower()));
+        hero.setAgile(getRealValueBetween(min, max, heroTemplate.getAgile()));
+        hero.setAggressivity(getRealValueBetween(min, max, heroTemplate.getAggressivity()));
+        hero.setBlood(getRealValueBetween(min, max, heroTemplate.getBlood()));
+        hero.setArmor(getRealValueBetween(min, max, heroTemplate.getArmor()));
+        hero.setMagic(getRealValueBetween(min, max, heroTemplate.getMagic()));
+        hero.setMagicResist(getRealValueBetween(min, max, heroTemplate.getMagicResist()));
+        return hero;
+    }
+
+    /**
      * 随机生成怪物
      * @param monster
      * @return
@@ -137,6 +163,29 @@ public class RandomUtil {
         monster.setAgile(getRealValueBetween(min, max, monster.getAgile()));
         monster.setAggressivity(getRealValueBetween(min, max, monster.getAggressivity()));
 
+        return monster;
+    }
+
+    /**
+     * 随机生成怪物
+     * @param monsterTemplate
+     * @return
+     */
+    public static Monster getRandomMonster(MonsterTemplate monsterTemplate, MonsterPotential potential){
+        Monster monster = new Monster();
+        double max = potential.getMax();
+        double min = potential.getMin();
+        monster.setMonsterPotential(potential);
+        monster.setName(monsterTemplate.getName());
+        monster.setOccupation(monsterTemplate.getOccupation());
+        monster.setMentality(getRealValueBetween(min, max, monsterTemplate.getMentality()));
+        monster.setPower(getRealValueBetween(min, max, monsterTemplate.getPower()));
+        monster.setAgile(getRealValueBetween(min, max, monsterTemplate.getAgile()));
+        monster.setAggressivity(getRealValueBetween(min, max, monsterTemplate.getAggressivity()));
+        monster.setBlood(getRealValueBetween(min, max, monsterTemplate.getBlood()));
+        monster.setArmor(getRealValueBetween(min, max, monsterTemplate.getArmor()));
+        monster.setMagic(getRealValueBetween(min, max, monsterTemplate.getMagic()));
+        monster.setMagicResist(getRealValueBetween(min, max, monsterTemplate.getMagicResist()));
         return monster;
     }
 
@@ -187,6 +236,29 @@ public class RandomUtil {
     }
 
     /**
+     * 随机取得一个模板
+     * @param list
+     * @return
+     */
+    public static Object getRandomObjectForList(List list){
+        if (list == null || list.size()==0){
+            return null;
+        }
+        Object result = list.get(0);
+        double baseNum = 0;
+
+        for (Object o : list){
+            double num = Math.random();
+            if (num > baseNum){
+                result = o;
+                baseNum = num;
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * 根据最大最小偏差和基准值获得随机值
      * @param min
      * @param max
@@ -228,41 +300,41 @@ public class RandomUtil {
 ////            System.out.println(hero);
 ////        }
 
-        Hero zhangfei = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
-        zhangfei.setName("张飞");
-
-        Hero lvbu = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
-        lvbu.setName("吕布");
-
-        Equip e1 = new Equip(10, 12, 299, 12, 32, 121, 34, 12);
-        Equip e2 = new Equip(12, 11, 2, 12, 41, 32, 34, 12);
-        Equip e3 = new Equip(31, 33, 34, 1, 32, 121, 34, 12);
-        Equip e4 = new Equip(2, 44, 23, 41, 32, 121, 21, 12);
-        Equip e5 = new Equip(1, 55, 67, 12, 32, 345, 34, 12);
-        Equip e6 = new Equip(33, 34, 299, 12, 32, 121, 34, 12);
-        zhangfei.setE1(e1);
-        zhangfei.setE2(e2);
-        zhangfei.setE3(e3);
-        zhangfei.setE4(e4);
-        zhangfei.setE5(e5);
-        zhangfei.setE6(e6);
-
-        Equip ee1 = new Equip(10, 3, 123, 12, 123, 11, 34, 13);
-        Equip ee2 = new Equip(3, 12, 56, 23, 32, 32, 154, 12);
-        Equip ee3 = new Equip(5, 12, 765, 2, 54, 121, 21, 43);
-        Equip ee4 = new Equip(6, 4, 45, 34, 65, 123, 34, 12);
-        Equip ee5 = new Equip(3, 7, 44, 11, 23, 65, 12, 34);
-        lvbu.setE1(ee1);
-        lvbu.setE2(ee2);
-        lvbu.setE3(ee3);
-        lvbu.setE4(ee4);
-        lvbu.setE5(ee5);
-
-
-        for (int i=0;i<100;i++){
-            Monster monster = RandomUtil.getRandomMonster(new Slime(), getRandomMonsterPotential());
-            CalculatAttribute.battle(zhangfei, CalculatAttribute.calculatHeroAttr(zhangfei), monster);
-        }
+//        Hero zhangfei = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
+//        zhangfei.setName("张飞");
+//
+//        Hero lvbu = getRandomHero(new Hero(getRandomOccupation()), getRandomPotential());
+//        lvbu.setName("吕布");
+//
+//        Equip e1 = new Equip(10, 12, 299, 12, 32, 121, 34, 12);
+//        Equip e2 = new Equip(12, 11, 2, 12, 41, 32, 34, 12);
+//        Equip e3 = new Equip(31, 33, 34, 1, 32, 121, 34, 12);
+//        Equip e4 = new Equip(2, 44, 23, 41, 32, 121, 21, 12);
+//        Equip e5 = new Equip(1, 55, 67, 12, 32, 345, 34, 12);
+//        Equip e6 = new Equip(33, 34, 299, 12, 32, 121, 34, 12);
+//        zhangfei.setE1(e1);
+//        zhangfei.setE2(e2);
+//        zhangfei.setE3(e3);
+//        zhangfei.setE4(e4);
+//        zhangfei.setE5(e5);
+//        zhangfei.setE6(e6);
+//
+//        Equip ee1 = new Equip(10, 3, 123, 12, 123, 11, 34, 13);
+//        Equip ee2 = new Equip(3, 12, 56, 23, 32, 32, 154, 12);
+//        Equip ee3 = new Equip(5, 12, 765, 2, 54, 121, 21, 43);
+//        Equip ee4 = new Equip(6, 4, 45, 34, 65, 123, 34, 12);
+//        Equip ee5 = new Equip(3, 7, 44, 11, 23, 65, 12, 34);
+//        lvbu.setE1(ee1);
+//        lvbu.setE2(ee2);
+//        lvbu.setE3(ee3);
+//        lvbu.setE4(ee4);
+//        lvbu.setE5(ee5);
+//
+//
+//        for (int i=0;i<100;i++){
+//            Monster monster = RandomUtil.getRandomMonster(new Slime(), getRandomMonsterPotential());
+//            CalculatAttribute.battle(zhangfei, CalculatAttribute.calculatHeroAttr(zhangfei), monster);
+//        }
 
 //        try {
 //            CalculatAttribute.battle(CalculatAttribute.calculatHeroAttr(zhangfei), CalculatAttribute.calculatHeroAttr(lvbu));

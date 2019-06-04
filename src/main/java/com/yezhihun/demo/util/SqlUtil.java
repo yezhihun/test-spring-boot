@@ -2,6 +2,9 @@ package com.yezhihun.demo.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 
@@ -75,5 +78,15 @@ public class SqlUtil {
 			e.printStackTrace();
 		} 
 		
+	}
+
+	public static List<Field> getAllFields(Class clazz){
+		List<Field> fieldList = new ArrayList<>();
+		while (!clazz.equals(Object.class)){
+			fieldList.addAll(Arrays.asList(clazz.getDeclaredFields()));
+			clazz = clazz.getSuperclass();
+		}
+
+		return fieldList;
 	}
 }

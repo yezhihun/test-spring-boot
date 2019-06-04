@@ -1,7 +1,7 @@
 package com.yezhihun.demo.entity;
 
-import com.yezhihun.demo.enums.Occupation;
 import com.yezhihun.demo.enums.Potential;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
@@ -10,11 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "hero")
+@Proxy(lazy = false)
 public class Hero extends Biology {
-    /**
-     * 英雄姓名
-     */
-    private String name;
     /**
      * 装备
      */
@@ -43,41 +40,35 @@ public class Hero extends Biology {
     /**
      * 潜力值
      */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "potential", columnDefinition = "varchar(100) COMMENT '英雄品阶'")
     private Potential potential;
 
     public Hero clone() throws CloneNotSupportedException {
         return (Hero) super.clone();
     }
 
-    public Hero(Occupation occupation) {
-        this.occupation = occupation;
-        this.power = 80;
-        this.mentality = 80;
-        this.agile = 80;
-        this.aggressivity = 10;
-        this.magicResist = 5;
-        this.armor = 5;
-        this.blood = 100;
-        this.magic = 100;
-        this.level = 1;
-        switch (occupation) {
-            case MASTER:
-                this.mentality = 120;
-                break;
-            case SOLDIER:
-                this.power = 120;
-            case AGILE:
-                this.agile = 120;
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public Hero(Occupation occupation) {
+//        this.occupation = occupation;
+//        this.power = 80;
+//        this.mentality = 80;
+//        this.agile = 80;
+//        this.aggressivity = 10;
+//        this.magicResist = 5;
+//        this.armor = 5;
+//        this.blood = 100;
+//        this.magic = 100;
+//        this.level = 1;
+//        switch (occupation) {
+//            case MASTER:
+//                this.mentality = 120;
+//                break;
+//            case SOLDIER:
+//                this.power = 120;
+//            case AGILE:
+//                this.agile = 120;
+//        }
+//    }
 
     public long getExp() {
         return exp;

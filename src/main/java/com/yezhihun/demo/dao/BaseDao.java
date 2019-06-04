@@ -9,7 +9,7 @@ import java.util.List;
 //@Repository
 public interface BaseDao<T> extends JpaRepository<T, Integer> {
 
-	void update(T t);
+	int update(T t);
 	
 	void update(T oldObj, T newObj);
 	

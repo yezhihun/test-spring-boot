@@ -28,7 +28,7 @@ public interface BaseService<T> {
     //TODO update 实现 待定
 //    public int updateByPrimaryKeySelective(T t);
 
-//    public int updateByPrimaryKey(T t);
+    int updateByPrimaryKey(T t);
     
     void init();
     

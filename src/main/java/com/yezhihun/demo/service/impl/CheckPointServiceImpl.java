@@ -4,15 +4,15 @@ import com.yezhihun.demo.dao.CheckPointDao;
 import com.yezhihun.demo.entity.Equip;
 import com.yezhihun.demo.entity.Hero;
 import com.yezhihun.demo.entity.checkpoint.CheckPoint;
-import com.yezhihun.demo.entity.monster.Slime;
+import com.yezhihun.demo.entity.monster.Monster;
 import com.yezhihun.demo.entity.template.EquipTemplate;
-import com.yezhihun.demo.service.CheckPointService;
-import com.yezhihun.demo.service.EquipService;
-import com.yezhihun.demo.service.EquipTemplateService;
+import com.yezhihun.demo.entity.template.MonsterTemplate;
+import com.yezhihun.demo.service.*;
 import com.yezhihun.demo.util.CalculatAttribute;
 import com.yezhihun.demo.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +21,7 @@ import java.util.Map;
  * Created by tianye on 2019/5/25.
  */
 @Service
+@Transactional
 public class CheckPointServiceImpl extends AbstractBaseServiceImpl<CheckPoint> implements CheckPointService {
     @Autowired
     private CheckPointDao mapDao;
@@ -28,6 +29,10 @@ public class CheckPointServiceImpl extends AbstractBaseServiceImpl<CheckPoint> i
     private EquipTemplateService equipTemplateService;
     @Autowired
     private EquipService equipService;
+    @Autowired
+    private MonsterTemplateService monsterTemplateService;
+    @Autowired
+    private HeroService heroService;
 
     @Override
     public void init() {
@@ -48,13 +53,15 @@ public class CheckPointServiceImpl extends AbstractBaseServiceImpl<CheckPoint> i
          */
         boolean flag = true;
         for (int i=0;i<10 && flag;i++){
-            Slime slime = new Slime();
             /**
-             * TODO 根据模板生成怪物
+             * 根据模板生成怪物
              */
-            RandomUtil.getRandomMonster(checkPoint, slime, RandomUtil.getRandomMonsterPotential());
+            List<MonsterTemplate> list = monsterTemplateService.selectByLevel(checkPoint.getLevel());
+            MonsterTemplate monsterTemplate = (MonsterTemplate) RandomUtil.getRandomObjectForList(list);
+            Monster monster = RandomUtil.getRandomMonster(monsterTemplate, RandomUtil.getRandomMonsterPotential());
+//            RandomUtil.getRandomMonster(checkPoint, monsterTemplate, RandomUtil.getRandomMonsterPotential());
 
-            flag = CalculatAttribute.battle(hero, CalculatAttribute.calculatHeroAttr(hero), slime);
+            flag = CalculatAttribute.battle(hero, CalculatAttribute.calculatHeroAttr(hero), monster);
         }
         if (!flag){
             //TODO 战斗失败 退出副本
@@ -86,6 +93,8 @@ public class CheckPointServiceImpl extends AbstractBaseServiceImpl<CheckPoint> i
             Equip equip = RandomUtil.getRandomEquipByTemplate(et);
             equipService.insertEquipForHero(equip, hero);
         }
+
+        heroService.updateByPrimaryKey(hero);
     }
 
 

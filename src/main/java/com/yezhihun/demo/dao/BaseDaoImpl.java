@@ -36,14 +36,15 @@ public abstract class BaseDaoImpl<T> {
 	
 	protected Logger log = Logger.getLogger(this.getClass());
 	
-	public void update(T t){
+	public int update(T t){
 		Query q = null;
 		try {
 			q = createSqlForUpdate(t);
-			q.executeUpdate();
+			return q.executeUpdate();
 		} catch (Exception e) {
 			log.error("创建SQL失败:"+e);
 			e.printStackTrace();
+			return 0;
 		}
 	}
 	
@@ -75,7 +76,7 @@ public abstract class BaseDaoImpl<T> {
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		StringBuilder sql = new StringBuilder(" UPDATE " + tableName + " SET ");
+		StringBuilder sql = new StringBuilder(" UPDATE " + demo.getName() + " SET ");
 		StringBuilder setter = new StringBuilder();
 		StringBuilder where = new StringBuilder(" WHERE ");
 		Field[] field = demo.getDeclaredFields();
@@ -127,19 +128,19 @@ public abstract class BaseDaoImpl<T> {
 	private Query createSqlForUpdate(T t) throws Exception {
 		String tableName = "";
 		Class<?> demo = t.getClass();
-		Entity[] e = demo.getAnnotationsByType(Entity.class);
-		for(Entity en : e){
+//		Class<?> demo = HbUtils.getClassWithoutInitializingProxy(t);
+		Table[] e = demo.getAnnotationsByType(Table.class);
+		for(Table en : e){
 			tableName = en.name();
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		StringBuilder sql = new StringBuilder(" UPDATE " + tableName + " SET ");
+		StringBuilder sql = new StringBuilder(" UPDATE " + demo.getName() + " SET ");
 		StringBuilder setter = new StringBuilder();
 		StringBuilder where = new StringBuilder(" WHERE ");
-		Field[] field = demo.getDeclaredFields();
-		for(int i=0;i<field.length;i++){
-			Field f = field[i];
-			String fieldName = field[i].getName();
+		List<Field> fields = SqlUtil.getAllFields(demo);
+		for(Field f : fields){
+			String fieldName = f.getName();
 			
 			String methodFieldName = fieldName.replaceFirst(fieldName.charAt(0)+"", (fieldName.charAt(0)+"").toUpperCase());
 			
@@ -179,6 +180,7 @@ public abstract class BaseDaoImpl<T> {
 		for(int i=0;i<size;i++){
 			T t = list.get(i);
 			Class<?> demo = t.getClass();
+//			Class<?> demo = HbUtils.getClassWithoutInitializingProxy(t);
 			Field[] field = demo.getDeclaredFields();
 			int length = field.length;
 			for(int j=0;j<length;i++){

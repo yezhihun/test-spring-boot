@@ -49,6 +49,10 @@ public abstract class AbstractBaseServiceImpl<T> implements BaseService<T> {
 		return baseDao.getOne(id);
     }
 
+	public int updateByPrimaryKey(T t){
+    	return baseDao.update(t);
+	}
+
     public List<T> findAll(){
     	return baseDao.findAll();
     }

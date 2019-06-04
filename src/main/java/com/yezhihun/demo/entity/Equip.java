@@ -1,15 +1,16 @@
 package com.yezhihun.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.yezhihun.demo.enums.EquipCategory;
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
 
 /**
  * 装备
  */
 @Entity
 @Table(name = "equip")
+@Proxy(lazy = false)
 public class Equip extends Biology{
 
     /**
@@ -18,6 +19,9 @@ public class Equip extends Biology{
     @ManyToOne
     @JoinColumn(name = "owner")
     private Hero owner;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "equip_category", columnDefinition = "varchar(100) COMMENT '部位'")
+    private EquipCategory equipCategory;
 
     public Equip(){
 
@@ -40,5 +44,13 @@ public class Equip extends Biology{
 
     public void setOwner(Hero owner) {
         this.owner = owner;
+    }
+
+    public EquipCategory getEquipCategory() {
+        return equipCategory;
+    }
+
+    public void setEquipCategory(EquipCategory equipCategory) {
+        this.equipCategory = equipCategory;
     }
 }

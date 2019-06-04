@@ -7,11 +7,13 @@ import com.yezhihun.demo.service.EquipService;
 import com.yezhihun.demo.service.EquipTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by tianye on 2019/5/27.
  */
 @Service
+@Transactional
 public class EquipServiceImpl extends AbstractBaseServiceImpl<Equip> implements EquipService{
     @Autowired
     private EquipDao equipDao;

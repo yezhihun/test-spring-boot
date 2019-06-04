@@ -2,6 +2,7 @@ package com.yezhihun.demo.entity.template;
 
 import com.yezhihun.demo.entity.Biology;
 import com.yezhihun.demo.enums.Potential;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "hero_template")
+@Proxy(lazy = false)
 public class HeroTemplate extends Biology{
 
     @Enumerated(EnumType.STRING)

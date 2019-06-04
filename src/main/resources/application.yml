@@ -37,7 +37,7 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
   jpa:
     show-sql: true
-    database: mysql
+    database: MySQL
     hibernate:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect

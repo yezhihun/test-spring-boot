@@ -13,7 +13,7 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    protected Integer id;
     /**
      * 名称
      */
@@ -62,7 +62,7 @@ public class Biology extends BaseTable implements Serializable, Cloneable{
     /**
      * 等级
      */
-    @Column(name = "level", nullable = false, columnDefinition = "int default 0 COMMENT '等级'")
+    @Column(name = "level", nullable = false, columnDefinition = "int default 1 COMMENT '等级'")
     protected int level;
     /**
      * 职业
