@@ -218,6 +218,14 @@ public class RandomUtil {
         Equip equip = new Equip();
         double min = potenial.getMin();
         double max = potenial.getMax();
+//        try {
+//            BeansUtils.overwriteAccessibleProperties(equipTemplate, equip);
+//        } catch (IntrospectionException e) {
+//            e.printStackTrace();
+//        }
+        equip.setName(equipTemplate.getName());
+        equip.setOccupation(equipTemplate.getOccupation());
+        equip.setEquipCategory(equipTemplate.getEquipCategory());
         equip.setAggressivity(getRealValueBetween(min, max, equipTemplate.getAggressivity()));
         equip.setAgile(getRealValueBetween(min, max, equipTemplate.getAgile()));
         equip.setArmor(getRealValueBetween(min, max, equipTemplate.getArmor()));

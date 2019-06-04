@@ -52,7 +52,7 @@ public class CheckPointServiceImpl extends AbstractBaseServiceImpl<CheckPoint> i
          * 3,副本结算（随机掉落+固定掉落）
          */
         boolean flag = true;
-        for (int i=0;i<1000 && flag;i++){
+        for (int i=0;i<10 && flag;i++){
             /**
              * 根据模板生成怪物
              */
