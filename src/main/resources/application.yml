@@ -38,6 +38,7 @@ spring:
   jpa:
     show-sql: true
     database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
