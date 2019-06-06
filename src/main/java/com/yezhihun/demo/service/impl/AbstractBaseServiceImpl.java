@@ -32,11 +32,7 @@ public abstract class AbstractBaseServiceImpl<T> implements BaseService<T> {
 	}
 
     public void insert(T t){
-    	try{
-    		baseDao.save(t);
-    	}catch (Exception e) {
-			e.printStackTrace();
-		}
+    	baseDao.save(t);
     }
 
     public T selectByPrimaryKey(Integer id){
