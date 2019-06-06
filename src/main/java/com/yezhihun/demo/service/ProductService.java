@@ -1,9 +1,9 @@
 package com.yezhihun.demo.service;
 
-import java.util.List;
-
 import com.yezhihun.demo.entity.Product;
 import com.yezhihun.demo.entity.ProductImage;
+
+import java.util.List;
 
 /**
  * Created by tianye on 2018/5/3.
@@ -15,6 +15,6 @@ public interface ProductService extends BaseService<Product> {
 	 * @param productId
 	 */
 	public Product getByProdcutId(Long productId);
-	
+
 	public void publish(Product p,List<ProductImage> imageList);
 }

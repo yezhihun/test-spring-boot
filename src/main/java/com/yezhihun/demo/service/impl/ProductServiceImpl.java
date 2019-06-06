@@ -1,20 +1,19 @@
 package com.yezhihun.demo.service.impl;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.yezhihun.demo.dao.ProductDao;
 import com.yezhihun.demo.dao.ProductImageDao;
 import com.yezhihun.demo.entity.Product;
 import com.yezhihun.demo.entity.ProductImage;
 import com.yezhihun.demo.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Service
+@Transactional
 public class ProductServiceImpl extends AbstractBaseServiceImpl<Product> implements ProductService {
 	@Autowired
 	private ProductDao productDao;
@@ -35,10 +34,13 @@ public class ProductServiceImpl extends AbstractBaseServiceImpl<Product> impleme
 	}
 
 	@Override
-	@Transactional
+	@Transactional()
 	public void publish(Product p, List<ProductImage> imageList) {
 		productDao.save(p);
 		productImageDao.batchSave(imageList);
+
+		throw new RuntimeException("发生异常了..");
+
 	}
 	
 	
